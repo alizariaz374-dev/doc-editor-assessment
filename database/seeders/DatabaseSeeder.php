@@ -14,8 +14,15 @@ class DatabaseSeeder extends Seeder
      * Seed the application's database.
      */
     public function run(): void
-    {
-        User::factory(10)->create();
+{
+    \App\Models\User::firstOrCreate(
+        ['email' => 'test@example.com'],
+        ['name' => 'Alice Owner', 'password' => bcrypt('password')]
+    );
 
-    }
+    \App\Models\User::firstOrCreate(
+        ['email' => 'marge.mosciski@example.org'],
+        ['name' => 'Bob Shared', 'password' => bcrypt('password')]
+    );
+}
 }
